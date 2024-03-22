@@ -8,16 +8,16 @@ import { Footer } from "../footer"
 export const Home = () => {
     return (
         <Container>
-            <NavBar />
+            <NavBar currentPage="home"/>
             <Hero />
-            <Footer />
+            <Footer currentPage="home"/>
         </Container>
     )
 }
 
 const Container = styled.section`
     width: 100vw;
-    height: 100vh;
+    height: 100dvh;
     overflow: hidden;
     display: flex;
     flex-direction: column;

@@ -2,9 +2,13 @@ import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import styled from "styled-components"
 import { theme } from "../../styles/style"
-import { faArrowRight, faAt, faCircle } from "@fortawesome/free-solid-svg-icons"
+import { faAt, faCircle } from "@fortawesome/free-solid-svg-icons"
 
-export const Footer = () => {
+interface IFooterProps {
+    currentPage: string,
+}
+
+export const Footer: React.FC<IFooterProps> = ({currentPage}) => {
     return (
         <Container style={{ color: theme.textColor }}>
             <div className="social">
@@ -18,13 +22,11 @@ export const Footer = () => {
             <div className="pages">
                 <h2 className="placeYourOrder">Place your order</h2>
                 <div className="currentPage">
-
-                    <FontAwesomeIcon className="icon" icon={faCircle} />
-                    <FontAwesomeIcon className="icon clicked" icon={faCircle} />
-                    <FontAwesomeIcon className="icon" icon={faCircle} />
+                    <FontAwesomeIcon className={`icon ${currentPage === "order-online" ? "clicked" : ""}`} icon={faCircle} />
+                    <FontAwesomeIcon className={`icon ${currentPage === "home" ? "clicked" : ""}`} icon={faCircle} />
+                    <FontAwesomeIcon className={`icon ${currentPage === "about-us" ? "clicked" : ""}`} icon={faCircle} />
                 </div>
             </div>
-            <button className="seeMore">See more <FontAwesomeIcon icon={faArrowRight} /></button>
         </Container>
     )
 }
@@ -34,10 +36,9 @@ const Container = styled.section`
     max-width: 1080px;
     display: flex;
     align-items: center;
-    position: absolute;
     bottom: 0;
-    justify-content: space-between;
     z-index: 2;
+    position: absolute;
 
     .social {
         display: flex;
@@ -65,16 +66,16 @@ const Container = styled.section`
             width: 180px;
             justify-content: center;
             
-                .icon {
-                    cursor: pointer;
-                    transition: .3s;
-                    color: ${theme.textColor};
-                    padding: 5px;
-        
-                    &:hover {
-                        filter: drop-shadow(0 0 10px);
-                    }
+            .icon {
+                transition: .3s;
+                cursor: pointer;
+                color: ${theme.textColor};
+                padding: 5px;
+            
+                &:hover {
+                    filter: drop-shadow(0 0 10px);
                 }
+            }
         }
     }
 
@@ -82,57 +83,68 @@ const Container = styled.section`
         display: flex;
         flex-direction: column;
         align-items: center;
-        position: relative;
-        bottom: 30px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        bottom: 5vh;
         gap: 20px;
 
         .placeYourOrder {
             text-transform: uppercase;
             position: relative;
         }
+    }
 
-        .currentPage {
-            display: flex;
-            gap: 30px;
-            align-items: center;
+    .currentPage {
+        display: flex;
+        gap: 30px;
+        align-items: center;
 
-            .icon {
-                font-size: 12px;
-                opacity: .6;
-                transition: .3s;
+        .icon {
+            font-size: 12px;
+            opacity: .6;
+            transition: .3s;
 
-                &.clicked {
-                    font-size: 22px;
-                    opacity: 1;
-                    filter: drop-shadow(0 0 3px);
-                }
+            &.clicked {
+                font-size: 22px;
+                opacity: 1;
+                filter: drop-shadow(0 0 3px);
             }
         }
     }
 
-    .seeMore {
-        width: 180px;
-        font-size: 16px;
-        font-weight: 600;
-        background: none;
-        padding: 10px 0;
-        display: flex;
-        gap: 10px;
-        justify-content: center;
-        align-items: center;
-        color: ${theme.textColor};
-        opacity: .6;
-        transition: .3s;
-        border: none;
-        border-radius: 50px;
-        cursor: pointer;
-        border: 1px solid transparent;
+    @media (max-width: 768px) {
+        .social {
+            flex-direction: column-reverse;
+            align-items: flex-start;
+            padding: 10px;
 
-        &:hover {
-            opacity: 1;
-            background-color: ${theme.highlightColor};
-            border-color: ${theme.textColor};
-            color: ${theme.backgroundColor};
+            .creator {
+                text-align: start;
+                font-size: 14px;
+            }
+
+            .icons {
+                flex-direction: column;
+                gap: 5px;
+                font-size: 25px;
+            }
+        }
+
+        .pages {
+            bottom: 15vh;
+
+            .changePage {
+                position: relative;
+                justify-content: center;
+                width: 100%;
+
+                .placeYourOrder {
+                    max-width: 60%;
+                    text-align: center;
+                }
+            }
         }
     }
 `

@@ -1,0 +1,299 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "name": "Big Bacon Delight",
+            "ingredients": [
+                "beef burger",
+                "bacon",
+                "cheddar cheese",
+                "lettuce",
+                "tomato",
+                "special sauce"
+            ],
+            "price": 15.99,
+            "image": "https://media.istockphoto.com/id/539243164/pt/foto/crispy-chicken-burger.jpg?s=1024x1024&w=is&k=20&c=nSsdnAsuxW_707PReBIL5xUBetvt6NvYNDGaojmjo_I="
+        },
+        {
+            "id": 2,
+            "name": "Chicken BBQ Supreme",
+            "ingredients": [
+                "grilled chicken fillet",
+                "barbecue sauce",
+                "prato cheese",
+                "caramelized onion",
+                "lettuce"
+            ],
+            "price": 12.99,
+            "image": "https://images.pexels.com/photos/8183569/pexels-photo-8183569.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        },
+        {
+            "id": 3,
+            "name": "Veggie Garden Burger",
+            "ingredients": [
+                "mushroom burger",
+                "swiss cheese",
+                "avocado",
+                "arugula",
+                "pepper sauce"
+            ],
+            "price": 11.50,
+            "image": "https://media.istockphoto.com/id/1072389646/pt/foto/vegan-chickpeas-burgers-with-arugula-pickled-cucumbers-and-hummus-copy-space.jpg?s=1024x1024&w=is&k=20&c=7wC-N9oUQnyqetSE9WocmIoHbsyOts-nYE2oJqPPh5g="
+        },
+        {
+            "id": 4,
+            "name": "Double Cheese Explosion",
+            "ingredients": [
+                "two beef burgers",
+                "prato cheese",
+                "cheddar cheese",
+                "special sauce"
+            ],
+            "price": 14.50,
+            "image": "https://media.istockphoto.com/id/499123693/pt/foto/grande-cheeseburguer-com-queijo-derretido-e-brilhante-fundo.jpg?s=1024x1024&w=is&k=20&c=O81WcoF42VhETQs0d4bXOyCtdCh2HpvuLgyAbpurQEQ="
+        },
+        {
+            "id": 5,
+            "name": "Spicy Jalapeño Burger",
+            "ingredients": [
+                "beef burger",
+                "pepper jack cheese",
+                "pickled jalapeños",
+                "chipotle pepper",
+                "lettuce",
+                "tomato"
+            ],
+            "price": 13.75,
+            "image": "https://media.istockphoto.com/id/1320360118/pt/foto/delicious-craft-beef-burger-with-jalapenos-cheese-bacon-and-whole-wheat-bun.jpg?s=1024x1024&w=is&k=20&c=0qlmcJzWeLIXfHhiyxKPm0EKpHb7aDjAY-Cr5FN7uWc="
+        },
+        {
+            "id": 6,
+            "name": "Mushroom Swiss Melt",
+            "ingredients": [
+                "beef burger",
+                "swiss cheese",
+                "sautéed mushrooms",
+                "grilled red onion",
+                "aioli sauce"
+            ],
+            "price": 12.25,
+            "image": "https://media.istockphoto.com/id/1290118633/pt/foto/rustic-hamburger-with-juicy-mushroom-meat.jpg?s=1024x1024&w=is&k=20&c=gCWQ1cq6XJ5r1tnCNJxUjOAC6H7oBrrTxWFlYfVwiF8="
+        },
+        {
+            "id": 7,
+            "name": "Classic Bacon Cheeseburger",
+            "ingredients": [
+                "beef burger",
+                "cheddar cheese",
+                "bacon",
+                "caramelized onion",
+                "barbecue sauce"
+            ],
+            "price": 14.25,
+            "image": "https://media.istockphoto.com/id/520215281/pt/foto/bacon-burger.jpg?s=1024x1024&w=is&k=20&c=502td0OTykhCQDufMti1Zoo4ZP7qZiIA6etrNIjX5ik="
+        },
+        {
+            "id": 8,
+            "name": "Hawaiian Pineapple Burger",
+            "ingredients": [
+                "beef burger",
+                "swiss cheese",
+                "ham",
+                "grilled pineapple",
+                "teriyaki sauce"
+            ],
+            "price": 13.99,
+            "image": "https://media.istockphoto.com/id/1043829398/pt/foto/hawaiian-teriyaki-pineapple-and-bacon-burger-with-fries.jpg?s=1024x1024&w=is&k=20&c=2cYbAYvC8b5_MRchx_E_eVErzKY5dFxbXucPu2t9IW4="
+        },
+        {
+            "id": 9,
+            "name": "Tex-Mex Guacamole Burger",
+            "ingredients": [
+                "beef burger",
+                "pepper jack cheese",
+                "guacamole",
+                "grilled peppers",
+                "red onion"
+            ],
+            "price": 13.50,
+            "image": "https://media.istockphoto.com/id/1351037955/pt/foto/burger-with-meat-and-avocado-sauce-served-on-wooden-table.jpg?s=1024x1024&w=is&k=20&c=RzMGteRkdQH4sPdix0KMCZBz0ShogCmbmNAHWYd2Paw="
+        },
+        {
+            "id": 10,
+            "name": "BBQ Pulled Pork Burger",
+            "ingredients": [
+                "pulled pork in barbecue sauce",
+                "beef burger",
+                "cheddar cheese",
+                "fried onion",
+                "pickles"
+            ],
+            "price": 15.75,
+            "image": "https://media.istockphoto.com/id/525630863/pt/foto/puxado-de-porco-hambúrguer.jpg?s=1024x1024&w=is&k=20&c=AzpljHsUF0H7RcwOLq-163yhs6queOOvFmmTjl16u6k="
+        },
+        {
+            "id": 11,
+            "name": "Coca-Cola",
+            "flavor": "traditional",
+            "ml_options": [
+                {
+                    "ml": 300
+                },
+                {
+                    "ml": 500
+                },
+                {
+                    "ml": 750
+                }
+            ],
+            "price_per_ml": 0.02,
+            "image": "https://media.istockphoto.com/id/533575209/pt/foto/refrigerantes-de-ser-vertido-para-vidro.jpg?s=1024x1024&w=is&k=20&c=xwYQOydprc2v8QRxs_FNfiex8S9ApmwigpvF-Qfe3jE="
+        },
+        {
+            "id": 12,
+            "name": "Sprite",
+            "flavor": "lemon",
+            "ml_options": [
+                {
+                    "ml": 300
+                },
+                {
+                    "ml": 500
+                },
+                {
+                    "ml": 750
+                }
+            ],
+            "price_per_ml": 0.015,
+            "image": "https://media.istockphoto.com/id/1264549543/pt/foto/refreshing-cold-lemon-lime-soda.jpg?s=1024x1024&w=is&k=20&c=DbWxFJfEvsGGC2wSU91KSAVF2ZqpA9Jou5Eo3a-o-3k="
+        },
+        {
+            "id": 13,
+            "name": "Fanta",
+            "flavor": "orange",
+            "ml_options": [
+                {
+                    "ml": 300
+                },
+                {
+                    "ml": 500
+                },
+                {
+                    "ml": 750
+                }
+            ],
+            "price_per_ml": 0.012,
+            "image": "https://media.istockphoto.com/id/477315064/pt/foto/actualizar-creme-de-soda-de-laranja.jpg?s=1024x1024&w=is&k=20&c=Tg-AM6cTXPr66uuQnOIb4d38DD_jVYuc0AscDDa_fgE="
+        },
+        {
+            "id": 14,
+            "name": "Guaraná Antarctica",
+            "flavor": "guarana",
+            "ml_options": [
+                {
+                    "ml": 300
+                },
+                {
+                    "ml": 500
+                },
+                {
+                    "ml": 750
+                }
+            ],
+            "price_per_ml": 0.01,
+            "image": "https://media.istockphoto.com/id/1264183456/pt/foto/two-cups-of-cold-cola-soft-drink-with-ice.jpg?s=1024x1024&w=is&k=20&c=DD_tQlm0qMpjWzvRWnya-PkYdlEhGAsmKe9t9ltJmVU="
+        },
+        {
+            "id": 15,
+            "name": "Fresh Orange Juice",
+            "flavor": "orange",
+            "ml_options": [
+                {
+                    "ml": 300
+                },
+                {
+                    "ml": 500
+                },
+                {
+                    "ml": 750
+                }
+            ],
+            "price_per_ml": 0.015,
+            "image": "https://media.istockphoto.com/id/537837754/pt/foto/sumo-de-laranja-salpicos.jpg?s=1024x1024&w=is&k=20&c=XGGSEpJ1JP_NZjkH00RdIIRmug3IeuOey2IhaJ-hXZc="
+        },
+        {
+            "id": 16,
+            "name": "Fresh Pineapple Juice",
+            "flavor": "pineapple",
+            "ml_options": [
+                {
+                    "ml": 300
+                },
+                {
+                    "ml": 500
+                },
+                {
+                    "ml": 750
+                }
+            ],
+            "price_per_ml": 0.015,
+            "image": "https://media.istockphoto.com/id/1293513839/pt/foto/pineapple-cocktail.jpg?s=1024x1024&w=is&k=20&c=bnbdnAiOPQhnK3ygWC7cPRAiwDLRx4eRaa37fcgHmf0="
+        },
+        {
+            "id": 17,
+            "name": "French Fries",
+            "price": 5.00,
+            "weight": "200g",
+            "image": "https://media.istockphoto.com/id/618214356/pt/foto/basket-of-famous-fast-food-french-fries.jpg?s=1024x1024&w=is&k=20&c=rVuqhg05im-7dcxEcBNHVHi3MPH9WKOaot1aiqq_vNc="
+        },
+        {
+            "id": 18,
+            "name": "Onion Rings",
+            "price": 6.00,
+            "weight": "150g",
+            "image": "https://media.istockphoto.com/id/451682899/pt/foto/feito-em-casa-livre-aros-de-cebola-frita.jpg?s=1024x1024&w=is&k=20&c=JJRpGoKZvUggqTcslE4ZwSaZIIV8xgb_uIN2iKQ114k="
+        },
+        {
+            "id": 19,
+            "name": "Vanilla Milkshake",
+            "price": 7.50,
+            "weight": "300g",
+            "image": "https://media.istockphoto.com/id/827673960/pt/foto/milkshake-with-cream.jpg?s=1024x1024&w=is&k=20&c=vG-aUFhT_S6rRod5AQecEJeem-DzVfmPZSUjDA3O6XE="
+        },
+        {
+            "id": 20,
+            "name": "Fruit Salad",
+            "price": 6.00,
+            "weight": "250g",
+            "image": "https://media.istockphoto.com/id/476953636/pt/foto/salada-de-frutas.jpg?s=1024x1024&w=is&k=20&c=JQcIFFu7NTZRNcHKrtwTw5YGZ_VskcUzdleDeyx3wcI="
+        },
+        {
+            "id": 21,
+            "name": "Chicken Nuggets",
+            "price": 8.00,
+            "weight": "180g",
+            "image": "https://media.istockphoto.com/id/480144591/pt/foto/camarão-frito.jpg?s=1024x1024&w=is&k=20&c=rxTedYF8QKeNgdCcbUBYUa3AVAWKcwvT-fE9NkJwMY8="
+        },
+        {
+            "id": 22,
+            "name": "Corn Cream",
+            "price": 5.50,
+            "weight": "200g",
+            "image": "https://media.istockphoto.com/id/1312821169/pt/foto/corn-chowder.jpg?s=1024x1024&w=is&k=20&c=7ZduMXXDqs03h6Sznn5i8begkokudJBPZDB5j4B_FIs="
+        },
+        {
+            "id": 23,
+            "name": "Garlic Bread",
+            "price": 4.50,
+            "weight": "150g",
+            "image": "https://media.istockphoto.com/id/1289760337/pt/foto/stuffed-garlic-bread.jpg?s=1024x1024&w=is&k=20&c=WSIch81eNj3i4_1TwYnM7BAcUFNOPC1qL-O6MXfWTZw="
+        },
+        {
+            "id": 24,
+            "name": "Barbecue Sauce",
+            "price": 3.00,
+            "weight": "100g",
+            "image": "https://media.istockphoto.com/id/820209602/pt/foto/ribs-bbq-souce-in-trable-wood.jpg?s=1024x1024&w=is&k=20&c=03F0aO9xXvwzcbZnfkduk0iZO2OG-xZQ_zqLqNBLOoo="
+        }
+    ]
+}
