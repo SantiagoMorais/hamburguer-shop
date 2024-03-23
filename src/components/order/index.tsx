@@ -3,13 +3,14 @@ import { NavBar } from "../navBar"
 import { theme } from "../../styles/style"
 import { Footer } from "../footer"
 import { Shopping } from "../shopping"
+import { OrderFooter } from "../orderFooter"
 
 export const OrderOnline = () => {
     return (
         <Container>
             <NavBar currentPage="order-online"/>
             <Shopping />
-            <Footer currentPage="order-online"/>
+            <OrderFooter />
         </Container>
     )
 }

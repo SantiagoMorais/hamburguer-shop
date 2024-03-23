@@ -147,4 +147,14 @@ const Container = styled.section`
             }
         }
     }
+
+    @media (max-width: 350px) {
+        .pages {
+            .placeYourOrder {
+                font-size: 16px;
+                width: 150px;
+                text-align: center;
+            }
+        }
+    }
 `

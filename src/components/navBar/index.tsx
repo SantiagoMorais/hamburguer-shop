@@ -54,15 +54,15 @@ export const NavBar: React.FC<NavBarProps> = ({ currentPage }) => {
                     </li>
                     <li>
                         <Link to={"/about"}>
-                        <button
-                            style={
-                                currentPage === "about-us"
-                                    ? { backgroundColor: theme.highlightColor, filter: "none", }
-                                    : { background: "none" }
-                            }
-                        >
-                            About us
-                        </button>
+                            <button
+                                style={
+                                    currentPage === "about-us"
+                                        ? { backgroundColor: theme.highlightColor, filter: "none", }
+                                        : { background: "none" }
+                                }
+                            >
+                                About us
+                            </button>
                         </Link>
                     </li>
                 </ul>
@@ -73,9 +73,9 @@ export const NavBar: React.FC<NavBarProps> = ({ currentPage }) => {
                     <p className="number">(99)9999-9999</p>
                 </div>
                 <Link to={"/chart"}>
-                <button className="cart">
-                    <FontAwesomeIcon icon={faCartPlus} className="icon" />
-                </button>
+                    <button className="cart">
+                        <FontAwesomeIcon icon={faCartPlus} className="icon" />
+                    </button>
                 </Link>
             </div>
         </Container>
@@ -208,6 +208,7 @@ const Container = styled.section`
                 height: 0;       
                 overflow: hidden;
                 transition: .3s;
+                z-index: 2;
 
                 li {
                     width: 100%;
@@ -287,8 +288,10 @@ const Container = styled.section`
             margin-top: 10px;
 
             .phoneData {
+                position: absolute;
                 left: 0;
                 right: 0;
+                top: 70px;
                 margin: auto;
             }
         }

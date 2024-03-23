@@ -5,6 +5,8 @@ import { PageAbout } from "./pageAbout"
 import { PageChart } from "./pageChart"
 
 export const AppRoutes = () => {
+
+
     return (
         <BrowserRouter>
             <Routes>

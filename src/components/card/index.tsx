@@ -1,8 +1,9 @@
 import styled from "styled-components"
 import { theme } from "../../styles/style"
-import React from "react"
+import React, { useState } from "react"
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { AddToCartCard } from "../addToCartCard";
 
 interface ILunchData {
     id: number;
@@ -21,6 +22,11 @@ interface ICardProps {
 }
 
 export const Card: React.FC<ICardProps> = ({ snackData }) => {
+    const [showSnackCard, setShowSnackCard] = useState(false);
+
+    const handleSnackCard = () => {
+        setShowSnackCard(!showSnackCard)
+    }
 
     return (
         <Container>
@@ -34,9 +40,7 @@ export const Card: React.FC<ICardProps> = ({ snackData }) => {
 
                         {(snackData.ingredients?.length ?? 0) > 0 &&
                             <p className="ingredientsList">Ingredients: {snackData.ingredients?.map((ingredient, index) =>
-                                <>
-                                    <span className="ingredient"> {ingredient} {index === (snackData.ingredients?.length ?? 0) - 1 ? "" : "-"} </span>
-                                </>
+                                <span key={index} className="ingredient"> {ingredient} {index === (snackData.ingredients?.length ?? 0) - 1 ? "" : "|"} </span>
                             )}</p>
                         }
 
@@ -60,21 +64,25 @@ export const Card: React.FC<ICardProps> = ({ snackData }) => {
                             }
 
                             {snackData.ml_options &&
-                                <p className="price">
-                                    <span>Prices: </span> {snackData.ml_options.map((ml, index) =>
-                                        <>
-                                            <span className="mlMeasure">{ml.ml}ml:</span> ${ml.ml * (snackData?.price_per_ml ?? 0)} {index === (snackData?.ml_options?.length ?? 0) - 1 ? "" : "| "}
-                                        </>
+                                <>
+                                    {snackData.ml_options.map((ml, index) =>
+                                        <p className="price" key={index}>
+                                            <span className="mlMeasure">{ml.ml}ml:</span> ${ml.ml * (snackData?.price_per_ml ?? 0)}
+                                        </p>
                                     )}
-                                </p>
+                                </>
                             }
                         </div>
                     </div>
-                    <div className="addToCart">
-                        <button className="button">
+                    <div className="cart">
+                        <button className="addToCart" onClick={() => handleSnackCard()}>
                             <FontAwesomeIcon icon={faCartPlus} />
                         </button>
                     </div>
+
+                    {showSnackCard &&
+                        <AddToCartCard snackId={snackData.id} />
+                    }
                 </>
             }
         </Container>
@@ -82,26 +90,22 @@ export const Card: React.FC<ICardProps> = ({ snackData }) => {
 }
 
 const Container = styled.div`
-    width: 45%;
-    min-width: 400px;
-    min-height: 150px;
     border-radius: 20px;
     background-color: ${theme.textColor};
     color: ${theme.backgroundColor};
     display: flex;
-    align-items: center;
-    padding: 10px;
+    padding: 10px 13px;
+    gap: 10px;
+    position: relative;
 
     .image {
-        height: 90%;
-        border-radius: 8px;
-        margin: 10px;
+        height: 120px;
 
         .lunchImage {
             height: 100%;
             object-fit: cover;
             width: 120px;
-            border-radius: 30px;
+            border-radius: 20px;
             box-shadow: 0 0 10px ${theme.highlightColor};
         }
     }
@@ -112,7 +116,8 @@ const Container = styled.div`
         gap: 10px;
 
         .snackName {
-            color: ${theme.highlightColor}
+            color: ${theme.highlightColor};
+            font-size: 18px;
         }
 
         .ingredientsList {
@@ -125,6 +130,7 @@ const Container = styled.div`
 
         .flavor {
             text-transform: capitalize;
+            font-weight: 500;
 
             span {
                 font-weight: 700;
@@ -132,29 +138,44 @@ const Container = styled.div`
         }
 
         .weight {
-
+            font-weight: 500;
             span {
                 font-weight: 700;
             }
         }
 
         .price {
-
+            font-weight: 500;
             span {
                 font-weight: 700;
             }
 
             .mlMeasure {
-                font-weight: 500;
-                color: ${theme.highlightColor}
+                font-weight: 700;
+                color: ${theme.highlightColor};
             }
         }
     }
 
-    .addToCart {
-        width: 100px,
-        height: 100px;
-        background-color: red;
-    }
+
+        .addToCart {
+            position: absolute;
+            right: 15px;
+            bottom: 15px;
+            padding: 3px;
+            font-size: 18px;
+            border-radius: 8px;
+            border: 1px solid;
+            color: ${theme.textColor};
+            background-color: ${theme.backgroundColor};
+            cursor: pointer;
+            transition: .3s;
     
+            &:hover {
+                opacity: .8;
+                box-shadow: 0 0 10px ${theme.highlightColor};
+                color: ${theme.highlightColor};
+            }
+        
+    }
 `

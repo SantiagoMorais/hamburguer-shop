@@ -33,11 +33,16 @@ const Container = styled.section`
     margin-bottom: 20vh;
 
     .snacks {
-        display: flex;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
         gap: 20px;
         width: 100%;
+        max-width: 1200px; 
         padding: 0 20px;
-        flex-wrap: wrap;
-        justify-content: center;
+    }
+
+    @media (max-width: 768px) {
+        margin-top: 30px;
+        margin-bottom: 26vh;
     }
 `
