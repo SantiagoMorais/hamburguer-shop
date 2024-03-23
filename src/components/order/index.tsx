@@ -1,7 +1,6 @@
 import styled from "styled-components"
 import { NavBar } from "../navBar"
 import { theme } from "../../styles/style"
-import { Footer } from "../footer"
 import { Shopping } from "../shopping"
 import { OrderFooter } from "../orderFooter"
 

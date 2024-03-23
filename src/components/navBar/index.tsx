@@ -90,6 +90,7 @@ const Container = styled.section`
     justify-content: space-between;
     align-items: center;
     z-index: 2;
+    position: absolute;
 
     .logo {
         font-style: italic;

@@ -3,9 +3,22 @@ import styled from "styled-components"
 import snacksData from '../../json/snacks.json'
 import { Card } from "../card";
 import { theme } from "../../styles/style";
+import { AddToCartCard } from "../addToCartCard";
 
 export const Shopping = () => {
     const [snacks] = useState(snacksData.data);
+    const [showAddToCart, setShowAddToCart] = useState(false);
+    const [snackId, setSnackId] = useState<number>();
+
+    const handleAddToCart = (id : number) => {
+        setShowAddToCart(true);
+        setSnackId(id);
+    }
+
+    const handleCloseAddToCart = () => {
+        setShowAddToCart(false);
+        document.body.style.overflow = 'auto';
+    }
     
     return (
         <Container>
@@ -14,11 +27,12 @@ export const Shopping = () => {
             {snacks.length > 0 &&
             <>
                 {snacks.map((snack, index) => 
-                    <Card key={index} snackData={snack} />
+                    <Card key={index} snackData={snack} handleAddToCart={handleAddToCart}/>
                 )}
                 </>
             }
             </div>
+            {showAddToCart && <AddToCartCard snackId={snackId} onClose={handleCloseAddToCart} />}
         </Container>
     )
 }
@@ -32,6 +46,10 @@ const Container = styled.section`
     max-width: 100vw;
     margin-bottom: 20vh;
 
+    .title {
+        margin-top: 80px;
+    }
+
     .snacks {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -42,7 +60,10 @@ const Container = styled.section`
     }
 
     @media (max-width: 768px) {
-        margin-top: 30px;
         margin-bottom: 26vh;
+
+        .title {
+            margin-top: 100px;
+        }
     }
 `

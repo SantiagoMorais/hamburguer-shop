@@ -24,7 +24,6 @@ export const OrderFooter = () => {
                         </button>
                     </Link>
                 </div>
-
             </div>
         </Container>
     )

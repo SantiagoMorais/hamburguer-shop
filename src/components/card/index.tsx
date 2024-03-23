@@ -19,14 +19,11 @@ interface ILunchData {
 
 interface ICardProps {
     snackData: ILunchData;
+    handleAddToCart: (id: number) => void;
 }
 
-export const Card: React.FC<ICardProps> = ({ snackData }) => {
+export const Card: React.FC<ICardProps> = ({ snackData, handleAddToCart }) => {
     const [showSnackCard, setShowSnackCard] = useState(false);
-
-    const handleSnackCard = () => {
-        setShowSnackCard(!showSnackCard)
-    }
 
     return (
         <Container>
@@ -75,13 +72,13 @@ export const Card: React.FC<ICardProps> = ({ snackData }) => {
                         </div>
                     </div>
                     <div className="cart">
-                        <button className="addToCart" onClick={() => handleSnackCard()}>
+                        <button className="addToCart" onClick={() => handleAddToCart(snackData.id)}>
                             <FontAwesomeIcon icon={faCartPlus} />
                         </button>
                     </div>
 
                     {showSnackCard &&
-                        <AddToCartCard snackId={snackData.id} />
+                        <AddToCartCard snackId={snackData.id} onClose={() => setShowSnackCard(!showSnackCard)} />
                     }
                 </>
             }

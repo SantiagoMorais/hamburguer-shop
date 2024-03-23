@@ -2,18 +2,37 @@ import styled from "styled-components";
 import snacksData from '../../json/snacks.json'
 import React, { useState } from "react";
 import { theme } from "../../styles/style";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBasketShopping, faCartPlus, faX } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 interface ICardProps {
-    snackId: number,
+    snackId: number | undefined,
+    onClose: () => void,
 }
 
-export const AddToCartCard: React.FC<ICardProps> = ({ snackId }) => {
+export const AddToCartCard: React.FC<ICardProps> = ({ snackId, onClose }) => {
     const [snack] = useState(snacksData.data.find(snack => snack.id === snackId));
+
+    const handleClose = () => {
+        onClose();
+    }
 
     return (
         <Card>
             {snack &&
                 <div className="container">
+                    <button className="closeButton" onClick={handleClose}> <FontAwesomeIcon icon={faX} /></button>
+
+                    <div className="optionsButtons">
+                        <button className="option" onClick={handleClose}>Keep shopping <FontAwesomeIcon icon={faBasketShopping} /></button>
+                        <Link to={"/chart"}>
+                            <button className="option">
+                                Complete purchases <FontAwesomeIcon icon={faCartPlus} className="icon" />
+                            </button>
+                        </Link>
+                    </div>
+
                     <div className="image">
                         <img className="lunchImage" src={snack?.image} alt="Lunch image" />
                     </div>
@@ -64,26 +83,100 @@ export const AddToCartCard: React.FC<ICardProps> = ({ snackId }) => {
 }
 
 const Card = styled.div`
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    background-color: ${theme.textColor};
+    position: fixed;
     color: ${theme.backgroundColor};
-    width: 50vw;
-    height: 50vh;
-    z-index: 3;
+    width: 100vw;
+    min-height: 100vh;
+    z-index: 2;
     padding: 20px;
     border-radius: 8px;
     border: 1px solid;
     display: flex;
     align-items: center;
+    justify-content: center;
+    font-weight: 500;
 
     .container {
+        background-color: ${theme.textColor};
+        max-width: 50vw;
+        min-width: 700px;
         display: flex;
+        z-index: 1;
+        padding: 25px;
+        position: relative;
+        border-radius: 20px;
+        margin: 0 20px;
         gap: 20px;
-        align-items: center;
+        
+        .closeButton {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid;
+            width: 35px;
+            height: 35px;
+            opacity: .6;
+            transition: .3s;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+
+        .optionsButtons {
+            position: absolute;
+            bottom: -45px;
+            width: 100%;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+
+            .option {
+                border-radius: 8px;
+                padding: 5px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: .3s;
+                font-weight: 500;
+
+                &:hover {
+                    box-shadow: 0 0 10px ${theme.highlightColor};
+                }
+            }
+            
+        }
+
+        .image {
+            .lunchImage {
+                height: 200px;
+                width: 200px;
+                object-fit: cover;
+                border-radius: 20px;
+                box-shadow: 0 0 10px ${theme.highlightColor};
+            }
+        }
+
+        .data {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            .snackName {
+                color: ${theme.highlightColor};
+            }
+        }
+    }
+
+    &:after {
+        content: "";
+        position: absolute;
+        z-index: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: ${theme.backgroundColor};
+        opacity: .6;
     }
 `
