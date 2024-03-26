@@ -2,48 +2,47 @@
 
 🧾✍ This is a personal project using React + Vite + TypeScript.
 
-[Click here to visualize the project in your web browser](https://hamburger-shop.vercel.app).
+[Click here to view the project in your web browser](https://hamburger-shop.vercel.app).
 
-<img src="./src/screenshots/project-concluded.jpg" alt="desktop preview">
+![desktop preview](./src/screenshots/project-concluded.jpg)
 
 ## Summary
 
 - [General Vision](#general-vision)
-  - [The objective](#the-objective)
+  - [Objective](#objective)
   - [Screenshots](#screenshots)
-- [My process](#my-process)
-  - [Used technologies](#used-technologies)
-  - [Project functionality](#project-functionality)
-  - [How to execute the project](#how-to-execute-the-project)
-  - [Continuous development](#continuous-development)
+- [My Process](#my-process)
+  - [Technologies Used](#technologies-used)
+  - [Project Functionality](#project-functionality)
+  - [How to Run the Project](#how-to-run-the-project)
+  - [Continuous Development](#continuous-development)
   - [Thanks](#thanks)
-  - [Usefull resources](#usefull-resources)
+  - [Useful Resources](#useful-resources)
 - [Author](#author)
-
 
 ## General Vision
 
-### The objective
+### Objective
 
-- Create a hamburger shop, with home, shop, about and cart page
-    - Home: Introduce the user to the shop page
+- Create a hamburger shop with home, shop, about, and cart pages:
+    - Home: Introduce the user to the shop
     - Shop: Create a list of snack cards that can be added to the shopping cart
-    - About: An "about us" page that the user can see the establishment address and know a little more about the service and the team
-    - Cart: the final page that the user will use to concluded your order, where he can see the snacks that were added to the cart, remove any of them, if it's necessary and see the shopping total value.
+    - About: An "about us" page where the user can see the establishment address and learn more about the service and the team
+    - Cart: Final page where the user can conclude their order, view the snacks added to the cart, remove any if necessary, and see the total shopping value.
 
 ### Screenshots
 
 #### Functionality
 
-<img src="./src/screenshots/project-functionality.gif" alt="Project functionality" width="80%">
+![Project functionality](./src/screenshots/project-functionality.gif)
 
 #### Responsivity
 
-<img src="./src/screenshots/project-responsivity.gif" alt="Project responsivity" width="80%">
+![Project responsivity](./src/screenshots/project-responsivity.gif)
 
-## My process
+## My Process
 
-### Used technologies
+### Technologies Used
 
 - [React](https://react.dev)
 - [Styled-Components](https://styled-components.com)
@@ -53,11 +52,11 @@
 - [Typescript](https://www.typescriptlang.org)
 - [Font-awesome-icons](https://fontawesome.com)
 
-### Project funcionality
+### Project Functionality
 
-First of all, we create the home page, that do not have a complex code. Here was used just styled code, to align the images to its places.
-It was just created a cart icon that changes its value when a new product is added to it.
-There are other fields that allow the user to see how many items he already choosed. So, it was used a context to store the snack informations from the shopping to be used and shown on the cart page.
+First, we created the home page, which doesn't have complex code. Only styled code was used to align the images.
+A cart icon was created that updates its value when a new product is added.
+There are other fields that allow the user to see how many items he has chosen. So, a context was used to store snack information from the shopping to be used and shown on the cart page.
 
 ```tsx
 export const CartProvider: React.FC<ICartProviderProps> = ({children}) => {
@@ -78,7 +77,7 @@ export const CartProvider: React.FC<ICartProviderProps> = ({children}) => {
 }
 ```
 
-Here we can collect the id, name, flavor, price and other informations from the snack choosed.
+Here we collect the ID, name, flavor, price, and other information from the chosen snack.
 
 ```tsx
 export interface ISnackData {
@@ -93,7 +92,7 @@ export interface ISnackData {
 }
 ```
 
-To collect that data, before to create the store, a json file was created to contain these informations and to be accesed later.
+To collect that data, a JSON file was created to contain this information and be accessed later.
 
 ```json
 {
@@ -112,7 +111,7 @@ To collect that data, before to create the store, a json file was created to con
 }
 ```
 
-That way, the json data was stored in an state, using useState, and for each snack, using the ```.map``` method, an Card component is rendered in the screen. Inside the component, we transfer the json data using a prop, then it is used to render the snack information.
+That way, the JSON data was stored in a state using useState, and for each snack, using the ```.map``` method, a Card component is rendered on the screen. Inside the component, we transfer the JSON data using a prop, which is then used to render the snack information.
 
 ```tsx
 {snackData.flavor &&
@@ -142,12 +141,11 @@ At this point, that is the result:
 
 <img src="./src/screenshots/shopping-store.jpg" alt="Shopping preview">
 
-Now, the focus is on to add the user options to his cart. When the user click on the cart button, in any of the snack cards, it'll be open a new card to confirm the order and select how many of that snack will be added to the cart.
-After confirm the order, the snack details will be added to the cartItems context to be used in the cart.
+Now, the focus is on adding the user options to his cart. When the user clicks on the cart button in any of the snack cards, it opens a new card to confirm the order and select how many of that snack will be added to the cart. After confirming the order, the snack details will be added to the **cartItems** context to be used in the cart.
 
-If the ```cartItems.length > 0``` (to be even one item stored in the state), the items will be show on the screen. Else, a message will advice the user that his cart is empty.
+If ```cartItems.length > 0```, the items will be shown on the screen. Otherwise, a message will advise the user that his cart is empty.
 
-At the bottom of the page, it's possible to see the final price of the purchase. This sum was made using the ```reduce``` method, to sum the price of every snack added to the cartItems state.
+At the bottom of the page, it's possible to see the final price of the purchase. This sum was made using the ``reduce`` method to sum the price of every snack added to the cartItems state.
 
 ```tsx
     useEffect(() => {
@@ -157,9 +155,9 @@ At the bottom of the page, it's possible to see the final price of the purchase.
     }, [cartItems])
 ```
 
-Every time that the cartItems is changed, as when the user delete an item insinde the cart, the useEffect is called again, seting the totalValue state to zero again, to remake the sum.
+Every time that **cartItems** is changed, as when the user deletes an item inside the cart, the **useEffect** is called again, setting the **totalValue** state to zero again, to remake the sum.
 
-Finally, at the bottom of the cart page, its possible to conclude the purchase using the "finalize purchase" button. When this button is clicked, a shopping summary is shown, with the name of all items, their values and the total value of the purchase. Then, the user can confirm your purchase.
+Finally, at the bottom of the cart page, it's possible to conclude the purchase using the "finalize purchase" button. When this button is clicked, a shopping summary is shown, with the name of all items, their values, and the total value of the purchase. Then, the user can confirm their purchase.
 
 ```tsx
 {cartItems.length > 0
