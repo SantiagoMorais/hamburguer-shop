@@ -1,16 +1,13 @@
 import styled, { keyframes } from "styled-components"
-import hamburguerImage from "../../assets/hamburguer-hero.png"
-import { theme } from "../../styles/style"
-
+import hamburgerImage from "@assets/hamburger-hero.png"
+import { theme } from "@styles/style.tsx"
 
 export const Hero = () => {
-    
-
     return (
         <Container style={{color: theme.textColor}}>
-            <h1 className="title">HAMBURGUER</h1>
+            <h1 className="title">HAMBURGER</h1>
             <div className="lightCircle"></div>
-            <img className="heroImage" src={hamburguerImage} alt="Hamburguer image" />
+            <img className="heroImage" src={hamburgerImage} alt="Hamburger image" />
         </Container>
     )
 }
@@ -27,7 +24,6 @@ const bounceAnimation = keyframes`
     }
 `;
 
-
 const Container = styled.section`
     width: 100%;
     display: flex;
@@ -39,7 +35,7 @@ const Container = styled.section`
     transform: translateY(-50%);
 
     .title {
-        font-size: 12vw;
+        font-size: 13vw;
         font-weight: 900;
         opacity: .6;
         z-index:1;

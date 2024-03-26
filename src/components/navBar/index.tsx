@@ -1,10 +1,10 @@
 import { faBars, faCartPlus, faCrown, faXmark } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import styled from "styled-components"
-import { theme } from "../../styles/style"
+import { theme } from "@styles/style.tsx"
 import { useContext, useState } from "react"
 import { Link } from "react-router-dom"
-import { CartContext } from "../../contexts/cartContext"
+import { CartContext } from "@contexts/cartContext.tsx"
 interface NavBarProps {
     currentPage: string,
 }
@@ -19,7 +19,9 @@ export const NavBar: React.FC<NavBarProps> = ({ currentPage }) => {
 
     return (
         <Container style={{ color: theme.textColor }}>
-            <h2 className="logo"><FontAwesomeIcon icon={faCrown} />Burguer</h2>
+            <Link to={"/"}>
+                <h2 className="logo"><FontAwesomeIcon icon={faCrown} />Burguer</h2>
+            </Link>
             <nav className="navigation">
                 <button
                     className={`showMore ${clicked ? "clicked" : ''}`}
@@ -99,6 +101,12 @@ const Container = styled.section`
         font-style: italic;
         width: min-content;
         text-align: center;
+        color: ${theme.textColor};
+        transition: .3s;
+
+        &:hover {
+            filter: drop-shadow(0 0 3px);
+        }
     }
 
     .navigation {

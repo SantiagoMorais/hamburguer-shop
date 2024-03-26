@@ -1,10 +1,10 @@
 import styled from "styled-components"
-import { theme } from "../../styles/style"
+import { theme } from "@styles/style.tsx"
 import React, { useState } from "react"
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AddToCartCard } from "../addToCartCard";
-import { ISnackData } from "../../contexts/cartContext";
+import { ISnackData } from "@contexts/cartContext";
 
 interface ICardProps {
     snackData: ISnackData;
@@ -23,32 +23,27 @@ export const Card: React.FC<ICardProps> = ({ snackData, handleAddToCart }) => {
                     </div>
                     <div className="data">
                         <h2 className="snackName">{snackData.name}</h2>
-
                         {(snackData.ingredients?.length ?? 0) > 0 &&
                             <p className="ingredientsList">Ingredients: {snackData.ingredients?.map((ingredient, index) =>
                                 <span key={index} className="ingredient"> {ingredient} {index === (snackData.ingredients?.length ?? 0) - 1 ? "" : "|"} </span>
                             )}</p>
                         }
-
                         {snackData.flavor &&
                             <p className="flavor">
                                 <span>Flavor:</span> {snackData.flavor}
                             </p>
                         }
-
                         {snackData.weight &&
                             <p className="weight">
                                 <span>Weight:</span> {snackData.weight}
                             </p>
                         }
-
                         <div className="price">
                             {snackData.price &&
                                 <p className="price">
                                     <span>Price: </span> ${snackData.price}
                                 </p>
                             }
-
                             {snackData.ml &&
                                 <p className="price">
                                     <span className="mlMeasure">- {snackData.ml}ml</span>
@@ -61,7 +56,6 @@ export const Card: React.FC<ICardProps> = ({ snackData, handleAddToCart }) => {
                             <FontAwesomeIcon icon={faCartPlus} />
                         </button>
                     </div>
-
                     {showSnackCard &&
                         <AddToCartCard snackId={snackData.id} onClose={() => setShowSnackCard(!showSnackCard)} />
                     }

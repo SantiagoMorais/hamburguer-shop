@@ -1,8 +1,8 @@
 import styled from "styled-components"
 import { NavBar } from "../navBar"
 import { Hero } from "../hero"
-import heroImage from "../../assets/hamburguer-hero-image.jpg"
-import { theme } from "../../styles/style"
+import heroImage from "@assets/hamburger-hero-image.jpg"
+import { theme } from "@styles/style"
 import { Footer } from "../footer"
 
 export const Home = () => {

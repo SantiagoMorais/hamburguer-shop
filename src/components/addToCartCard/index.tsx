@@ -1,12 +1,11 @@
 import styled from "styled-components";
-import snacksData from '../../json/snacks.json'
+import snacksData from "@json/snacks.json"
 import React, { FormEvent, useContext, useEffect, useState } from "react";
-import { theme } from "../../styles/style";
+import { theme } from "@styles/style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBasketShopping, faCartPlus, faRotateLeft, faX } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import { CartContext, ISnackData } from "../../contexts/cartContext";
-
+import { CartContext, ISnackData } from "@contexts/cartContext.tsx";
 interface ICardProps {
     snackId: number | undefined,
     onClose: () => void,
@@ -59,7 +58,6 @@ export const AddToCartCard: React.FC<ICardProps> = ({ snackId, onClose }) => {
             {snack &&
                 <div className="container">
                     <button className="closeButton" onClick={handleClose}> <FontAwesomeIcon icon={faX} /></button>
-
                     <div className="optionsButtons">
                         <button
                             className="option"
@@ -75,42 +73,34 @@ export const AddToCartCard: React.FC<ICardProps> = ({ snackId, onClose }) => {
                             </button>
                         </Link>
                     </div>
-
                     <div className="image">
                         <img className="lunchImage" src={snack?.image} alt="Lunch image" />
                     </div>
-
                     <div className="data">
                         <h2 className="snackName">{snack.name}</h2>
-
                         {(snack.ingredients?.length ?? 0) > 0 &&
                             <p className="ingredientsList">Ingredients: {snack.ingredients?.map((ingredient, index) =>
                                 <span key={index} className="ingredient"> {ingredient} {index === (snack.ingredients?.length ?? 0) - 1 ? "" : "|"} </span>
                             )}</p>
                         }
-
                         {snack.flavor &&
                             <p className="flavor">
                                 <span className="flavorLabel">Flavor:</span> {snack.flavor}
                             </p>
                         }
-
                         {snack.weight &&
                             <p className="weight">
                                 <span className="weightLabel">Weight:</span> {snack.weight}
                             </p>
                         }
-
                         {snack.ml &&
                             <p className="mlMeasureLabel">- {snack.ml}ml</p>
                         }
-
                         {snack.price &&
                             <p className="price">
                                 <span className="priceLabel">Price: </span> ${snack.price}
                             </p>
                         }
-
                         <form className="quantity" onSubmit={handleItemAddedToCart}>
                             <label htmlFor="snackQuantity" className="snackQuantity">Quantity:</label>
                             <input type="number" name="snackQuantity" id="snackQuantity" placeholder="00" min={1} />
@@ -187,7 +177,6 @@ const Card = styled.div`
                     box-shadow: 0 0 10px ${theme.highlightColor};
                 }
             }
-            
         }
 
         .image {
@@ -274,7 +263,7 @@ const Card = styled.div`
 
     .advices {
         position: fixed;
-        bottom: 100px;
+        bottom: 60px;
         overflow: hidden;
         text-align: center;
         transition: .3s;
@@ -376,7 +365,7 @@ const Card = styled.div`
         }
 
         .advices {
-            top: 100px;
+            top: 30px;
             bottom: auto;
             font-size: 14px;
         }

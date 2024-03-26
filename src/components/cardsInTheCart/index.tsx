@@ -1,6 +1,6 @@
 import styled from "styled-components"
-import { CartContext, ISnackData } from "../../contexts/cartContext"
-import { theme } from "../../styles/style";
+import { CartContext, ISnackData } from "@contexts/cartContext.tsx"
+import { theme} from "@styles/style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import { useContext } from "react";

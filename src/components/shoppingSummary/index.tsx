@@ -1,8 +1,8 @@
 import styled from "styled-components"
-import { theme } from "../../styles/style"
+import { theme } from "@styles/style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
-import { CartContext } from "../../contexts/cartContext";
+import { CartContext } from "@contexts/cartContext";
 import { useContext } from "react";
 
 interface IShoppingSummaryProps {
@@ -20,7 +20,6 @@ export const ShoppingSummary: React.FC<IShoppingSummaryProps> = ({ closeWindow, 
     return (
         <Card>
             <div className="background"></div>
-
             <div className="container">
                 <button
                     className="closeButton"
@@ -36,13 +35,12 @@ export const ShoppingSummary: React.FC<IShoppingSummaryProps> = ({ closeWindow, 
                                 <li key={index} className="item"><p className="name"><span>{index + 1}.</span> {item.name}</p><span>${item.price}</span></li>
                             )}
                         </ul>
-
                         <h3 className="totalValue">Total value: <span>${totalValue}</span></h3>
                         <button className="finalizePurchase" onClick={handleCompletePurchase}>Confirm Purchase?</button>
                     </>
                     : <div className="thankYou">
                         <h2>Thank you for your choice!</h2>
-                        <p>Your shopping you arrived really soon, enjoy! 🍔😋</p>
+                        <p>Your delicious snacks will arrive really soon, enjoy! 🍔😋</p>
                     </div>
                 }
             </div>
@@ -130,6 +128,7 @@ const Card = styled.div`
             width: 250px;
             align-self: center;
             transition: .3s;
+            margin-bottom: 0;
 
             &:hover {
                 opacity: .8;
@@ -167,16 +166,9 @@ const Card = styled.div`
 
     @media(max-width: 350px) {
         .container {
-            .items {
-                .item {
-                    justify-content: center;
-                    flex-direction: column;
-                    align-items: center;
-                }
-            }
-    
+            min-width: 0px;
             .finalizePurchase {
-                width: 200px;
+                width: 100%;
                 font-size: 18px;
             }
         }

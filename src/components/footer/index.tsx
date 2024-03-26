@@ -1,7 +1,7 @@
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import styled from "styled-components"
-import { theme } from "../../styles/style"
+import { theme } from "@styles/style.tsx"
 import { faAt, faCircle } from "@fortawesome/free-solid-svg-icons"
 
 interface IFooterProps {
@@ -12,7 +12,7 @@ export const Footer: React.FC<IFooterProps> = ({currentPage}) => {
     return (
         <Container style={{ color: theme.textColor }}>
             <div className="social">
-                <p className="creator">Created by: <br /> <a href="https://github.com/SantiagoMorais" className="link">Felipe Santiago</a></p>
+                <p className="creator">Created by: <br /> <a href="https://github.com/SantiagoMorais" className="link" target="_blank">Felipe Santiago</a></p>
                 <div className="icons">
                     <a href="https://github.com/SantiagoMorais" className="icon" target="_blank"><FontAwesomeIcon icon={faGithub} /></a>
                     <a href="https://www.linkedin.com/in/felipe-santiago-morais/" className="icon" target="_blank"><FontAwesomeIcon icon={faLinkedin} /></a>

@@ -1,7 +1,8 @@
 import styled from "styled-components"
 import { NavBar } from "../navBar"
-import { theme } from "../../styles/style"
 import { Footer } from "../footer"
+import { theme } from "@styles/style";
+
 
 export const AboutUs = () => {
     return (
@@ -72,7 +73,7 @@ const Container = styled.section`
 
     @media(max-width: 768px) {
         .image {
-            background-position: calc(100% + 350px) center;
+            background-position: calc(100% + 150px) center;
         }
 
         .about {
@@ -80,35 +81,33 @@ const Container = styled.section`
             left: 50%;
             transform: translateX(-50%);
             margin: auto;
-            top: 20%;
+            top: -10%;
     
             .aboutUs {
                 font-size: 24px;
             }
-    
+
             .text {
                 font-size: 18px;
             }
-
         }
     }
 
     @media(max-width: 350px) {
         .image {
-            background-position: calc(100% + 450px) center;
+            background-position: calc(100% + 200px) center;
         }
 
         .about {
             width: 90%;
     
             .aboutUs {
-                font-size: 22px;
+                font-size: 20px;
             }
     
             .text {
-                font-size: 16px;
+                font-size: 14px;
             }
-
         }
     }
 `

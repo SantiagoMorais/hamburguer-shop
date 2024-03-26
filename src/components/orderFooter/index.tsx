@@ -1,11 +1,11 @@
 import styled from "styled-components"
-import { theme } from "../../styles/style"
+import { theme } from "@styles/style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons"
 import { faAt, faCartPlus } from "@fortawesome/free-solid-svg-icons"
 import { Link } from "react-router-dom"
 import { useContext } from "react"
-import { CartContext } from "../../contexts/cartContext"
+import { CartContext } from "@contexts/cartContext"
 
 export const OrderFooter = () => {
     const { cartItems } = useContext(CartContext);
