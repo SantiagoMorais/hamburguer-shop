@@ -4,26 +4,29 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons"
 import { faAt, faCartPlus } from "@fortawesome/free-solid-svg-icons"
 import { Link } from "react-router-dom"
+import { useContext } from "react"
+import { CartContext } from "../../contexts/cartContext"
 
 export const OrderFooter = () => {
+    const { cartItems } = useContext(CartContext);
+
     return (
         <Container>
             <div className="social">
-                <p className="creator">Created by: <br /> <a href="https://github.com/SantiagoMorais" className="link">Felipe Santiago</a></p>
+                <p className="creator">Created by: <br /> <span className="creatorName">Felipe Santiago</span></p>
                 <div className="icons">
                     <a href="https://github.com/SantiagoMorais" className="icon" target="_blank"><FontAwesomeIcon icon={faGithub} /></a>
                     <a href="https://www.linkedin.com/in/felipe-santiago-morais/" className="icon" target="_blank"><FontAwesomeIcon icon={faLinkedin} /></a>
                     <a href="mailto:contatofelipesantiago@gmail.com" className="icon" target="_blank"><FontAwesomeIcon icon={faAt} /></a>
                 </div>
-                <div className="seeCart">
-                    
-                    <Link to={"/chart"}>
-                    <p className="message">(0) See your cart</p>
-                        <button className="cart">
-                            <FontAwesomeIcon icon={faCartPlus} className="icon" />
-                        </button>
-                    </Link>
-                </div>
+            </div>
+            <div className="seeCart">
+                <Link to={"/chart"}>
+                    <p className="message">({cartItems.length}) <span>See your cart</span></p>
+                    <button className="cart">
+                        <FontAwesomeIcon icon={faCartPlus} className="icon" />
+                    </button>
+                </Link>
             </div>
         </Container>
     )
@@ -48,13 +51,8 @@ const Container = styled.footer`
             text-align: center;
             font-weight: 500;
             
-            .link {
+            .creatorName {
                 color: ${theme.textColor};
-                transition: .3s;
-
-                &:hover {
-                    filter: drop-shadow(0 0 5px);
-                }
             }
         }
 
@@ -105,12 +103,57 @@ const Container = styled.footer`
                 transition: .3s;
                 font-size: 20px;
             }
-
-
         }
 
         &:hover {
             filter: drop-shadow(0 0 10px);
+        }
+    }
+
+    @media(max-width: 768px) {
+        justify-content: space-evenly;
+        height: 50px;
+
+        .social {
+            display: flex;
+            flex-direction: column;
+
+            .creator {
+                font-size: 12px;
+                display: flex;
+                gap: 5px;
+            }
+    
+            .icons {
+                font-size: 20px;
+                margin-left: 0px; 
+                
+                .icon {
+                    transition: .3s;
+                    cursor: pointer;
+                    color: ${theme.textColor};
+                    padding: 0 5px;
+                
+                    &:hover {
+                        filter: drop-shadow(0 0 10px);
+                    }
+                }
+            }
+        }
+
+        .seeCart {
+            position: static;
+            transform: translateX(0%);
+    
+            .message {
+                span {
+                    display: none;
+                }
+            }
+    
+            .cart {
+                width: 20px;
+            }        
         }
     }
 `

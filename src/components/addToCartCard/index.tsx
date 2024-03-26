@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import snacksData from '../../json/snacks.json'
-import React, { useState } from "react";
+import React, { FormEvent, useContext, useEffect, useState } from "react";
 import { theme } from "../../styles/style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBasketShopping, faCartPlus, faX } from "@fortawesome/free-solid-svg-icons";
+import { faBasketShopping, faCartPlus, faRotateLeft, faX } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { CartContext, ISnackData } from "../../contexts/cartContext";
 
 interface ICardProps {
     snackId: number | undefined,
@@ -12,11 +13,46 @@ interface ICardProps {
 }
 
 export const AddToCartCard: React.FC<ICardProps> = ({ snackId, onClose }) => {
-    const [snack] = useState(snacksData.data.find(snack => snack.id === snackId));
+    const snack = snacksData.data.find(snack => snack.id === snackId);
+    const [purchaseAdvise, setPurchaseAdvice] = useState(false);
+    const [recentlyAddedSnacks, setRecentlyAddedSnacks] = useState<ISnackData[]>([]);
+    const { setCartItems } = useContext(CartContext);
 
     const handleClose = () => {
         onClose();
     }
+
+    const handleItemAddedToCart = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const snackQuantity = Number(((e.target as HTMLFormElement).elements.namedItem("snackQuantity") as HTMLInputElement).value);
+
+        setPurchaseAdvice(true);
+        setTimeout(() => {
+            setPurchaseAdvice(false);
+            setRecentlyAddedSnacks([]);
+        }, 3000);
+
+        if (snack) {
+            const newOrders: ISnackData[] = [];
+            for (let i = 0; i < snackQuantity; i++) {
+                newOrders.push(snack);
+            }
+            setCartItems(prevdata => [...prevdata, ...newOrders])
+            setRecentlyAddedSnacks(newOrders);
+        }
+    }
+
+    const handleUndo = () => {
+        setRecentlyAddedSnacks([]);
+        setCartItems(prevdata => prevdata.filter(item => !recentlyAddedSnacks.includes(item)));
+    };
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setRecentlyAddedSnacks([]);
+        }, 3000);
+        return () => clearTimeout(timer);
+    }, [recentlyAddedSnacks]);
 
     return (
         <Card>
@@ -25,10 +61,17 @@ export const AddToCartCard: React.FC<ICardProps> = ({ snackId, onClose }) => {
                     <button className="closeButton" onClick={handleClose}> <FontAwesomeIcon icon={faX} /></button>
 
                     <div className="optionsButtons">
-                        <button className="option" onClick={handleClose}>Keep shopping <FontAwesomeIcon icon={faBasketShopping} /></button>
+                        <button
+                            className="option"
+                            onClick={handleClose}
+                            title="Keep shopping">
+                            <span>Keep shopping</span> <FontAwesomeIcon icon={faBasketShopping} />
+                        </button>
                         <Link to={"/chart"}>
-                            <button className="option">
-                                Complete purchases <FontAwesomeIcon icon={faCartPlus} className="icon" />
+                            <button
+                                className="option"
+                                title="Finalize purchase">
+                                <span>Finalize purchase</span> <FontAwesomeIcon icon={faCartPlus} className="icon" />
                             </button>
                         </Link>
                     </div>
@@ -48,33 +91,35 @@ export const AddToCartCard: React.FC<ICardProps> = ({ snackId, onClose }) => {
 
                         {snack.flavor &&
                             <p className="flavor">
-                                <span>Flavor:</span> {snack.flavor}
+                                <span className="flavorLabel">Flavor:</span> {snack.flavor}
                             </p>
                         }
 
                         {snack.weight &&
                             <p className="weight">
-                                <span>Weight:</span> {snack.weight}
+                                <span className="weightLabel">Weight:</span> {snack.weight}
                             </p>
                         }
 
-                        <div className="price">
-                            {snack.price &&
-                                <p className="price">
-                                    <span>Price: </span> ${snack.price}
-                                </p>
-                            }
+                        {snack.ml &&
+                            <p className="mlMeasureLabel">- {snack.ml}ml</p>
+                        }
 
-                            {snack.ml_options &&
-                                <div className="price">
-                                    <p>Prices: </p> {snack.ml_options.map((ml, index) =>
-                                        <p key={index}>
-                                            <span className="mlMeasure">{ml.ml}ml:</span> ${ml.ml * (snack?.price_per_ml ?? 0)} {index === (snack?.ml_options?.length ?? 0) - 1 ? "" : "| "}
-                                        </p>
-                                    )}
-                                </div>
-                            }
-                        </div>
+                        {snack.price &&
+                            <p className="price">
+                                <span className="priceLabel">Price: </span> ${snack.price}
+                            </p>
+                        }
+
+                        <form className="quantity" onSubmit={handleItemAddedToCart}>
+                            <label htmlFor="snackQuantity" className="snackQuantity">Quantity:</label>
+                            <input type="number" name="snackQuantity" id="snackQuantity" placeholder="00" min={1} />
+                            <button className="addToCart" title="Add to cart"><span>Add to cart</span> <FontAwesomeIcon icon={faCartPlus} className="icon" /></button>
+                        </form>
+                    </div>
+                    <div className="advices" style={{ height: `${purchaseAdvise ? "65px" : "0px"}` }}>
+                        <p className="addedToCartAdvice" >Snack added to cart!</p>
+                        <button className="undo" onClick={handleUndo}><FontAwesomeIcon icon={faRotateLeft} /> Undo!</button>
                     </div>
                 </div>
             }
@@ -88,13 +133,9 @@ const Card = styled.div`
     width: 100vw;
     min-height: 100vh;
     z-index: 2;
-    padding: 20px;
-    border-radius: 8px;
-    border: 1px solid;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 500;
 
     .container {
         background-color: ${theme.textColor};
@@ -166,6 +207,108 @@ const Card = styled.div`
 
             .snackName {
                 color: ${theme.highlightColor};
+                margin-right: 20px;
+            }
+
+            .ingredientsList {
+                font-weight: 700;
+                text-transform: capitalize;
+
+                .ingredient {
+                    font-weight: 500;
+                }
+            }
+
+            .weightLabel, .priceLabel, .flavorLabel, .mlMeasureLabel {
+                font-weight: 700;
+            }
+
+            .mlMeasureLabel {
+                color: ${theme.highlightColor};
+            }
+
+            .quantity {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+
+                .snackQuantity {
+                    font-weight: 700;
+                }
+                
+                #snackQuantity {
+                    width: 40px;
+                    height: 30px;
+                    text-align: center;
+                    border-radius: 8px;
+                    border: 1px solid;
+                    font-weight: 600;
+                    sizer: none;
+                    -webkit-appearance: none;
+                    appearance: none;
+
+                    &::-webkit-inner-spin-button {
+                        display: none;
+                    }
+                    
+                    &::-webkit-outer-spin-button {
+                        display: none;
+                    }
+                }
+
+                .addToCart {
+                    padding: 5px;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    border: 1px solid;
+                    cursor: pointer;
+                    transition: .3s;
+
+                    &:hover {
+                        box-shadow: 0 0 10px;
+                    }
+                }
+            }
+        }
+    }
+
+    .advices {
+        position: fixed;
+        bottom: 100px;
+        overflow: hidden;
+        text-align: center;
+        transition: .3s;
+        border-radius: 8px;
+        gap: 5px;
+        width: 100vw;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        .addedToCartAdvice, .undo {
+            background-color: ${theme.highlightColor};
+            color: ${theme.textColor};
+            padding: 5px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            border: 1px solid transparent;
+        }
+
+        .addedToCartAdvice {
+            width: 200px;
+        }
+        
+        .undo {
+            width: 100px;
+            cursor: pointer;
+            border: none;
+            transition: .3s;
+
+            &:hover {
+                box-shadow: 0 0 10px ${theme.highlightColor};
+                border: 1px solid ${theme.textColor};
             }
         }
     }
@@ -178,5 +321,99 @@ const Card = styled.div`
         height: 100vh;
         background-color: ${theme.backgroundColor};
         opacity: .6;
+    }
+
+    @media(max-width: 768px) {
+        .container {
+            max-width: 100%;
+            min-width: 0px;
+            width: 100%;
+            padding: 10px;
+            border-radius: 10px;
+    
+            .optionsButtons {
+                width: 100%;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                bottom: -85px;
+    
+                .option {
+                    width: 220px;
+                }  
+            }
+    
+            .image {
+                .lunchImage {
+                    height: 100%;
+                    width: 150px;
+                    border-radius: 8px;
+                }
+            }
+    
+            .data {
+                font-size: 14px;
+                gap: 5px;
+
+                .snackName {
+                    font-size: 18px;
+                }
+    
+                .quantity {
+                    #snackQuantity {
+                        width: 30px;
+                    }
+                    
+                    .addToCart {
+                        height: 30px;
+
+                        span {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+
+        .advices {
+            top: 100px;
+            bottom: auto;
+            font-size: 14px;
+        }
+    
+    }
+
+    @media(max-width: 400px) {
+        .container {
+            flex-direction: column;
+    
+            .image {
+                .lunchImage {
+                    height: 200px;
+                    width: 100%;
+                }
+            }
+        }
+
+        .advices {
+            flex-direction: column;
+        }
+    }
+
+    @media(max-width: 300px) {
+        .container {
+            .optionsButtons {
+                flex-direction: row;
+                bottom: -45px;
+    
+                .option {
+                    width: 50px;
+    
+                    span {
+                        display: none;
+                    }
+                }  
+            }
+        }
     }
 `

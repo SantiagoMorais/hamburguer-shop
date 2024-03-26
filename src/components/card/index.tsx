@@ -4,21 +4,10 @@ import React, { useState } from "react"
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AddToCartCard } from "../addToCartCard";
-
-interface ILunchData {
-    id: number;
-    name: string;
-    flavor?: string;
-    ml_options?: { ml: number; }[];
-    price_per_ml?: number;
-    price?: number;
-    image: string;
-    ingredients?: string[];
-    weight?: string;
-}
+import { ISnackData } from "../../contexts/cartContext";
 
 interface ICardProps {
-    snackData: ILunchData;
+    snackData: ISnackData;
     handleAddToCart: (id: number) => void;
 }
 
@@ -60,14 +49,10 @@ export const Card: React.FC<ICardProps> = ({ snackData, handleAddToCart }) => {
                                 </p>
                             }
 
-                            {snackData.ml_options &&
-                                <>
-                                    {snackData.ml_options.map((ml, index) =>
-                                        <p className="price" key={index}>
-                                            <span className="mlMeasure">{ml.ml}ml:</span> ${ml.ml * (snackData?.price_per_ml ?? 0)}
-                                        </p>
-                                    )}
-                                </>
+                            {snackData.ml &&
+                                <p className="price">
+                                    <span className="mlMeasure">- {snackData.ml}ml</span>
+                                </p>
                             }
                         </div>
                     </div>
@@ -96,10 +81,9 @@ const Container = styled.div`
     position: relative;
 
     .image {
-        height: 120px;
-
         .lunchImage {
             height: 100%;
+            min-height: 150px;
             object-fit: cover;
             width: 120px;
             border-radius: 20px;
@@ -119,6 +103,7 @@ const Container = styled.div`
 
         .ingredientsList {
             font-weight: 700;
+            
             .ingredient {
                 text-transform: capitalize;
                 font-weight: 500;
@@ -154,25 +139,56 @@ const Container = styled.div`
         }
     }
 
+    .addToCart {
+        position: absolute;
+        right: 15px;
+        bottom: 15px;
+        padding: 3px;
+        font-size: 18px;
+        border-radius: 8px;
+        border: 1px solid;
+        color: ${theme.textColor};
+        background-color: ${theme.backgroundColor};
+        cursor: pointer;
+        transition: .3s;
 
-        .addToCart {
-            position: absolute;
-            right: 15px;
-            bottom: 15px;
-            padding: 3px;
-            font-size: 18px;
-            border-radius: 8px;
-            border: 1px solid;
-            color: ${theme.textColor};
-            background-color: ${theme.backgroundColor};
-            cursor: pointer;
-            transition: .3s;
-    
-            &:hover {
-                opacity: .8;
-                box-shadow: 0 0 10px ${theme.highlightColor};
-                color: ${theme.highlightColor};
+        &:hover {
+            opacity: .8;
+            box-shadow: 0 0 10px ${theme.highlightColor};
+            color: ${theme.highlightColor};
+        }
+    }
+
+    @media(max-width: 440px) {
+        .image {
+            .lunchImage {
+                width: 100px;
             }
-        
+        }
+    
+        .data {
+            gap: 5px;
+            font-size: 14px;
+    
+            .snackName {
+                font-size: 16px;
+            }
+        }
+    }
+
+    @media(max-width: 350px) {
+        flex-direction: column;
+
+        .image {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+
+            .lunchImage {
+                width: 100%;
+                height: 150px;
+                min-height: 0px;
+            }
+        }
     }
 `

@@ -2,14 +2,16 @@ import { faBars, faCartPlus, faCrown, faXmark } from "@fortawesome/free-solid-sv
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import styled from "styled-components"
 import { theme } from "../../styles/style"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { Link } from "react-router-dom"
+import { CartContext } from "../../contexts/cartContext"
 interface NavBarProps {
     currentPage: string,
 }
 
 export const NavBar: React.FC<NavBarProps> = ({ currentPage }) => {
     const [clicked, setClicked] = useState(false);
+    const { cartItems } = useContext(CartContext);
 
     const handleClickButton = () => {
         setClicked(!clicked);
@@ -75,6 +77,7 @@ export const NavBar: React.FC<NavBarProps> = ({ currentPage }) => {
                 <Link to={"/chart"}>
                     <button className="cart">
                         <FontAwesomeIcon icon={faCartPlus} className="icon" />
+                        <p className="cartSize">{cartItems.length}</p>
                     </button>
                 </Link>
             </div>
@@ -154,10 +157,24 @@ const Container = styled.section`
             border-radius: 50%;
             border: none;
             cursor: pointer;
+            position: relative;
 
             .icon {
                 transition: .3s;
                 font-size: 20px;
+            }
+
+            .cartSize {
+                position: absolute;
+                background-color: ${theme.highlightColor};
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                bottom: 0;
+                right: 0;
             }
 
             &:hover > .icon {

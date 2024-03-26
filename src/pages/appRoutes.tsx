@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { PageHome } from "./pageHome"
 import { PageOrder } from "./pageOrder"
 import { PageAbout } from "./pageAbout"
-import { PageChart } from "./pageChart"
+import { PageCart } from "./pageCart"
 
 export const AppRoutes = () => {
 
@@ -13,7 +13,7 @@ export const AppRoutes = () => {
                 <Route path="/" element={<PageHome />}/>
                 <Route path="/order" element={<PageOrder />}/>
                 <Route path="/about" element={<PageAbout />}/>
-                <Route path="/chart" element={<PageChart />}/>
+                <Route path="/chart" element={<PageCart />}/>
             </Routes>
         </BrowserRouter>
     )

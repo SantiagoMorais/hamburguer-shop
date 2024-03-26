@@ -44,7 +44,7 @@ const Container = styled.section`
     gap: 20px;
     color: ${theme.textColor};
     max-width: 100vw;
-    margin-bottom: 20vh;
+    margin-bottom: 10vh;
 
     .title {
         margin-top: 80px;
@@ -60,10 +60,14 @@ const Container = styled.section`
     }
 
     @media (max-width: 768px) {
-        margin-bottom: 26vh;
-
         .title {
             margin-top: 100px;
+        }
+    }
+
+    @media(max-width: 440px) {
+        .snacks {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         }
     }
 `
