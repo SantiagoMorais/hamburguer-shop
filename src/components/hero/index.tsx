@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components"
-import hamburgerImage from "@assets/hamburger-hero.png"
+import hamburgerImage from "assets/hamburger-hero.png"
 import { theme } from "@styles/style.tsx"
 
 export const Hero = () => {

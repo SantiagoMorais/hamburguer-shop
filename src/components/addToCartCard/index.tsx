@@ -232,7 +232,7 @@ const Card = styled.div`
                     border-radius: 8px;
                     border: 1px solid;
                     font-weight: 600;
-                    sizer: none;
+                    appearance: none;
                     -webkit-appearance: none;
                     appearance: none;
 

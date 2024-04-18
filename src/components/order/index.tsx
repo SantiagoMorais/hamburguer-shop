@@ -5,7 +5,7 @@ import { useState } from "react";
 import snacksData from '../../json/snacks.json'
 import { Card } from "../card";
 import { AddToCartCard } from "../addToCartCard";
-import { theme } from "@styles/style";;
+import { theme } from "@styles/style";
 
 export const OrderOnline = () => {
     const [snacks] = useState(snacksData.data);
@@ -45,7 +45,7 @@ export const OrderOnline = () => {
 
 const Container = styled.section`
     max-width: 100vw;
-    overflowX: hidden;
+    overflow-X: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;

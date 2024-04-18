@@ -4,7 +4,7 @@
 
 [Click here to view the project in your web browser](https://hamburger-shop.vercel.app).
 
-![desktop preview](./src/screenshots/project-concluded.jpg)
+![desktop preview](./src/assets/screenshots/project-concluded.jpg)
 
 ## Summary
 
@@ -34,11 +34,11 @@
 
 #### Functionality
 
-![Project functionality](./src/screenshots/project-functionality.gif)
+![Project functionality](./src/assets/screenshots/project-functionality.gif)
 
 #### Responsivity
 
-![Project responsivity](./src/screenshots/project-responsivity.gif)
+![Project responsivity](./src/assets/screenshots/project-responsivity.gif)
 
 ## My Process
 
@@ -139,7 +139,7 @@ That way, the JSON data was stored in a state using useState, and for each snack
 ```
 At this point, that is the result:
 
-<img src="./src/screenshots/shopping-store.jpg" alt="Shopping preview">
+<img src="./src/assets/screenshots/shopping-store.jpg" alt="Shopping preview">
 
 Now, the focus is on adding the user options to his cart. When the user clicks on the cart button in any of the snack cards, it opens a new card to confirm the order and select how many of that snack will be added to the cart. After confirming the order, the snack details will be added to the **cartItems** context to be used in the cart.
 
@@ -178,7 +178,7 @@ Finally, at the bottom of the cart page, it's possible to conclude the purchase 
 }
 ```
 
-<img src="./src/screenshots/shopping-summary.jpg" alt="shopping summary" width="80%">
+<img src="./src/assets/screenshots/shopping-summary.jpg" alt="shopping summary" width="80%">
 
 ### How to execute the project
 - The project was created with [React-Vite](https://vitejs.dev).
@@ -189,16 +189,16 @@ The package.json file already contains the version of the library in its data, s
 
 - To run the project in the browser, it is necessary to activate **NPM Scripts** in the three dots next to the EXPOLORER of VSCode.
 
-<img src='./src/screenshots/Instruções-passo-1.bmp' alt="instruções passo 1">
+<img src='./src/assets/screenshots/Instruções-passo-1.bmp' alt="instruções passo 1">
 
 - Then, in the bottom-left window of **NPM SCRIPTS**, click on the **run** button next to package.json/dev vite.
 
-<img src='./src/screenshots/Instruções-passo-2.bmp' alt="instruções passo 2">
+<img src='./src/assets/screenshots/Instruções-passo-2.bmp' alt="instruções passo 2">
 
 
 - Finally, in the terminal, keep the **localhost** link will appear where the project will be running in your browser. Hover over it and click **Follow link**, or press the ctrl button on your keyboard and click on the **localhost**, and the page will open in your default browser.
 
-<img src='./src/screenshots/Instruções-passo-3.bmp' alt="instruções passo 3">
+<img src='./src/assets/screenshots/Instruções-passo-3.bmp' alt="instruções passo 3">
 
 There are other ways to open the project, but that form it is the one that I'm used to use.
 
