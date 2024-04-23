@@ -16,7 +16,6 @@
   - [Project Functionality](#project-functionality)
   - [How to Run the Project](#how-to-run-the-project)
   - [Continuous Development](#continuous-development)
-  - [Thanks](#thanks)
   - [Useful Resources](#useful-resources)
 - [Author](#author)
 
@@ -207,7 +206,7 @@ There are other ways to open the project, but that form it is the one that I'm u
 
 This project was made to improve my [Typescript](https://www.typescriptlang.org) knowledge and to get familiar with it. Everything I know is only possible today thanks to the entire team of teachers at [DevQuest](https://www.linkedin.com/school/devquest-dev-em-dobro/), that guide me to be a frontend developer. I hope to put in practice my knowledge to improve the users life with some way.
 
-### Recursos úteis
+### Useful resources
 
 - [Styled-Components](https://styled-components.com): Utilising tagged template literals (a recent addition to JavaScript) and the power of CSS, styled-components allows you to write actual CSS code to style your components. It also removes the mapping between components and styles – using components as a low-level styling construct could not be easier!
 
